@@ -1,3 +1,4 @@
-// import { User } from "./user-controller";
+// import { UserController } from "./user-controller";
+// import { PostController } from "./post-controller";
 
-// export const UserController = User;
+// export default { UserController, PostController };

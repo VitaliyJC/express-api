@@ -1,10 +1,10 @@
-import { prisma } from "../prisma/prisma-client.js";
-import bcrypt from "bcryptjs";
-import { toPng } from "jdenticon";
+import fs from "fs";
 import { fileURLToPath } from "url";
 import path from "path";
-import fs from "fs";
+import { prisma } from "../prisma/prisma-client.js";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { toPng } from "jdenticon";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
