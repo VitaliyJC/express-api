@@ -14,7 +14,7 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.set("view engine", "jade");
+// app.set("view engine", "jade");
 // раздавать статические файлы из папки  'upload'
 app.use("/uploads", express.static("uploads"));
 
@@ -26,16 +26,17 @@ if (!fs.existsSync("uploads")) {
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  next(createError(404));
+  res.status(404).json({ error: "Not Found" });
 });
 
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+  const response = {
+    message: err.message,
+    error: req.app.get("env") === "development" ? err : {},
+  };
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render("error");
+  // send the error in JSON format
+  res.status(err.status || 500).json(response);
 });

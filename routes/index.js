@@ -1,9 +1,10 @@
 import express from "express";
 const router = express.Router();
 import multer from "multer";
+import { authenticateToken } from "../middleware/auth.js";
 import { UserController } from "../controllers/user-controller.js";
 import { PostController } from "../controllers/post-controller.js";
-import { authenticateToken } from "../middleware/auth.js";
+import { CommentController } from "../controllers/comment-controller.js";
 
 const uploadDestination = "uploads";
 
@@ -33,5 +34,9 @@ router.post("/posts", authenticateToken, PostController.createPost);
 router.get("/posts", authenticateToken, PostController.getAllPost);
 router.get("/posts/:id", authenticateToken, PostController.getPostById);
 router.delete("/posts/:id", authenticateToken, PostController.deletePost);
+
+// Роуты комментариев
+router.post("/comments", authenticateToken, CommentController.createComment);
+router.delete("/comments/:id", authenticateToken, CommentController.deleteComment);
 
 export default router;
