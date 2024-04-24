@@ -41,7 +41,7 @@ export const PostController = {
 
       const postWithLikeInfo = posts.map((post) => ({
         ...post,
-        likedByUser: post.likes.some((like) => like.user.id === userId),
+        likedByUser: post.likes.some((like) => like.userId === userId),
       }));
 
       res.json(postWithLikeInfo);
