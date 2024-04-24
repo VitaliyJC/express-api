@@ -7,6 +7,7 @@ import { UserController } from "../controllers/user-controller.js";
 import { PostController } from "../controllers/post-controller.js";
 import { CommentController } from "../controllers/comment-controller.js";
 import { LikeController } from "../controllers/like-controller.js";
+import { FollowControllers } from "../controllers/follow-controllers.js";
 
 const uploadDestination = "uploads";
 
@@ -44,5 +45,9 @@ router.delete("/comments/:id", authenticateToken, CommentController.deleteCommen
 // Роуты лайков
 router.post("/likes", authenticateToken, LikeController.likePost);
 router.delete("/likes/:id", authenticateToken, LikeController.unlikePost);
+
+// Роуты подписок
+router.post("/follow", authenticateToken, FollowControllers.followUser);
+router.delete("/unfollow/:id", authenticateToken, FollowControllers.unfollowUser);
 
 export default router;
